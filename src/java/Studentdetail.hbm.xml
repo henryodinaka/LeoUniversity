@@ -3,21 +3,21 @@
 <!-- Generated May 15, 2018 8:48:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
   <class name="model.Studentdetail" optimistic-lock="version" schema="ODINAKA" table="STUDENTDETAIL">
-    <id name="userid" type="string">
+    <id name="userId" type="string">
       <column length="40" name="USERID"/>
       <generator class="assigned"/>
     </id>
-    <property name="firstname" type="string">
+    <property name="firstName" type="string">
       <column length="20" name="FIRSTNAME"/>
     </property>
-    <property name="lastname" type="string">
+    <property name="lastName" type="string">
       <column length="20" name="LASTNAME"/>
     </property>
     <property name="gender" type="string">
       <column length="10" name="GENDER"/>
     </property>
-    <property name="dob" type="string">
-      <column length="10" name="DOB"/>
+    <property name="dob" type="date">
+      <column length="50" name="DOB"/>
     </property>
     <property name="address" type="string">
       <column length="100" name="ADDRESS"/>

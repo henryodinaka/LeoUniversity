@@ -2,6 +2,7 @@ package model;
 // Generated May 15, 2018 8:48:12 PM by Hibernate Tools 4.3.1
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 
@@ -11,12 +12,12 @@ import java.io.Serializable;
  */
 public class Studentdetail  implements Serializable {
 
-
-     private String userid;
-     private String firstname;
-     private String lastname;
+    
+     private String userId;
+     private String firstName;
+     private String lastName;
      private String gender;
-     private String dob;
+     private Date dob;
      private String address;
      private String phone;
      private String email;
@@ -27,40 +28,42 @@ public class Studentdetail  implements Serializable {
 
 	
     public Studentdetail(String userid) {
-        this.userid = userid;
+        this.userId = userid;
     }
-    public Studentdetail(String userid, String firstname, String lastname, String gender, String dob, String address, String phone, String email, String password) {
-       this.userid = userid;
-       this.firstname = firstname;
-       this.lastname = lastname;
-       this.gender = gender;
-       this.dob = dob;
-       this.address = address;
-       this.phone = phone;
-       this.email = email;
-       this.password = password;
+
+    public Studentdetail(String userId, String firstName, String lastName, String gender, Date dob, String address, String phone, String email, String password) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.dob = dob;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
     }
+    
    
-    public String getUserid() {
-        return this.userid;
+    public String getUserId() {
+        return this.userId;
     }
     
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
-    public String getFirstname() {
-        return this.firstname;
-    }
-    
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-    public String getLastname() {
-        return this.lastname;
+    public String getFirstName() {
+        return this.firstName;
     }
     
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public String getLastName() {
+        return this.lastName;
+    }
+    
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
     public String getGender() {
         return this.gender;
@@ -69,11 +72,11 @@ public class Studentdetail  implements Serializable {
     public void setGender(String gender) {
         this.gender = gender;
     }
-    public String getDob() {
+    public Date getDob() {
         return this.dob;
     }
     
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
     public String getAddress() {
@@ -107,7 +110,7 @@ public class Studentdetail  implements Serializable {
 
     @Override
     public String toString() {
-        return "Studentdetail{" + "userid=" + userid + ", firstname=" + firstname + ", lastname=" + lastname + ", gender=" + gender + ", dob=" + dob + ", address=" + address + ", phone=" + phone + ", email=" + email + ", password=" + password + '}';
+        return "Studentdetail{" + "userid=" + userId + ", firstname=" + firstName + ", lastname=" + lastName + ", gender=" + gender + ", dob=" + dob + ", address=" + address + ", phone=" + phone + ", email=" + email + ", password=" + password + '}';
     }
 
 

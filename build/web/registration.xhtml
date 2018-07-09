@@ -28,7 +28,7 @@
                                     <tr>
                                         <td>First Name</td>
                                         <f:ajax event="change" render="fNameError">
-                                            <td><h:inputText value="#{registrationForm.firstName}" id="fName" required="true" requiredMessage="You Must enter first name" validator="#{registrationForm.validateInput}"/>
+                                            <td><h:inputText value="#{registration.firstName}" id="fName" required="true" requiredMessage="You Must enter first name" validator="#{registration.validateInput}"/>
                                             <h:message for="fName" id="fNameError" style="color: red"/> 
                                         </td>
                                         </f:ajax>
@@ -37,7 +37,7 @@
                                         <td>Last Name</td>
                                         <f:ajax event="change" render="lNameError">
                                         <td>
-                                            <h:inputText value="#{registrationForm.lastName}" id="lName" required="true" requiredMessage="You Must enter last name" validator="#{registrationForm.validateInput}"/>
+                                            <h:inputText value="#{registration.lastName}" id="lName" required="true" requiredMessage="You Must enter last name" validator="#{registration.validateInput}"/>
                                             <h:message for="lName" id="lNameError" style="color: red"/> 
                                         </td>
                                         </f:ajax>
@@ -45,7 +45,7 @@
                                     <tr>
                                         <td>Select Gender</td>
                                         <td>
-                                            <h:selectOneRadio value="#{registrationForm.gender}" id="gender" required="true" requiredMessage="You Must select the gender">
+                                            <h:selectOneRadio value="#{registration.gender}" id="gender" required="true" requiredMessage="You Must select the gender">
                                                 <f:selectItem itemValue="M" itemLabel="Male"/>
                                                 <f:selectItem itemValue="F" itemLabel="Female"/>
                                                 <h:message for="gneder" style="color: red"/>
@@ -55,7 +55,7 @@
                                     <tr>
                                         <td>Date of Birth</td>
                                         <td>
-                                            <h:inputText id="dob" value="#{registrationForm.DOB}" converterMessage="Enter DOB in MM/DD/YY format" required="true" requiredMessage="You must your date of birth">
+                                            <h:inputText id="dob" value="#{registration.dob}" converterMessage="Enter DOB in MM/DD/YY format" required="true" requiredMessage="You must your date of birth">
                                                 <f:convertDateTime pattern="MM/dd/yy" type="date"/>
                                             </h:inputText>
                                                 <h:message for="dob" style="color: red"/>
@@ -64,14 +64,14 @@
                                     <tr>
                                         <td>Address </td>
                                         <td>
-                                            <h:inputTextarea rows="3" value="#{registrationForm.address}" id="address" required="true" requiredMessage="You Must enter Your address"/>
+                                            <h:inputTextarea rows="3" value="#{registration.address}" id="address" required="true" requiredMessage="You Must enter Your address"/>
                                                 <h:message for="address" style="color: red"/> 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Phone Number</td>
                                         <td>
-                                            <h:inputText value="#{registrationForm.contactNumber}" id="phone" required="true" requiredMessage="Phone number is required">
+                                            <h:inputText value="#{registration.phone}" id="phone" required="true" requiredMessage="Phone number is required">
                                                 <f:validateRegex pattern="[0-9]{3}-+[0-9]{8}"/>
                                             </h:inputText>
                                                 <h:message for="phone" style="color: red"/>
@@ -81,7 +81,7 @@
                                         <td>E-mail</td>
                                         <f:ajax render="emailError" event="change"> 
                                         <td>
-                                            <h:inputText value="#{registrationForm.emailID}" id="email" required="true" requiredMessage="Email Address is required" validator="#{registrationForm.validateEmail}" validatorMessage="Invalid Email">
+                                            <h:inputText value="#{registration.email}" id="email" required="true" requiredMessage="Email Address is required" validator="#{registration.validateEmail}" validatorMessage="Invalid Email">
                                                 
                                             </h:inputText>
                                             <h:message for="email" id="emailError" style="color: red"/> 
@@ -91,7 +91,7 @@
                                     <tr>
                                         <td>User Id</td>
                                         <td>
-                                            <h:inputText value="#{registrationForm.userID}" id="userID" required="true" requiredMessage="Chose a userId" validatorMessage="User must not be less than 6 characters">
+                                            <h:inputText value="#{registration.userId}" id="userID" required="true" requiredMessage="Chose a userId" validatorMessage="User must not be less than 6 characters">
                                                 <f:validateLength maximum="100" minimum="6"/>
                                                 
                                             </h:inputText>
@@ -102,7 +102,7 @@
                                         <td>Password</td>
                                         <!--<f:ajax event="change" render="passError">-->
                                         <td>
-                                            <h:inputSecret size="12" value="#{registrationForm.password}" id="pass" required="true" requiredMessage="Chose a unique password" validator="#{registrationForm.validateFinalPassword}" validatorMessage="password must be minimun of 6 characters long">
+                                            <h:inputSecret size="12" value="#{registration.password}" id="pass" required="true" requiredMessage="Chose a unique password" validator="#{registration.validateFinalPassword}" validatorMessage="password must be minimun of 6 characters long">
                                                 <f:validateLength maximum="100" minimum="6"/>
                                             </h:inputSecret>
                                             <h:message for="pass" id="passError" style="color: red"/> 
@@ -113,7 +113,7 @@
                                         <td>Confirm Password</td>
 <!--                                        <f:ajax event="change" render="cPassError">-->
                                             <td>
-                                                <h:inputSecret value="#{registrationForm.confirmPassword}" id="cPass" required="true" requiredMessage="Confirm your password" validator="#{registrationForm.validateCPassword}">
+                                                <h:inputSecret value="#{registration.confirmPassword}" id="cPass" required="true" requiredMessage="Confirm your password" validator="#{registration.validateCPassword}">
                                                 </h:inputSecret> 
                                                 <h:message for="cPass" id="cPassError" style="color: red"/>
                                             </td>
@@ -121,7 +121,7 @@
                                     </tr>
                                     <tr>
                                         <td align ="right">
-                                            <h:commandButton value="Submit" action="#{registrationForm.submitAction()}"/>
+                                            <h:commandButton value="Submit" action="#{registration.save()}"/>
                                         </td>
                                         <td align="left">
                                             <h:commandButton value="Reset" type="reset" immediate="true" action="Registration"/>
@@ -129,7 +129,7 @@
                                     </tr>
                                     <tr>
                                         <p>
-                                            <h:outputText style ="color: red" value="#{registrationForm.userIDError}"/>
+                                            <h:outputText style ="color: red" value="#{registration.userIDError}"/>
                                         </p>
                                     </tr>
                                 </h:form>

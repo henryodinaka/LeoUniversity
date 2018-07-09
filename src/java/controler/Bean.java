@@ -71,11 +71,11 @@ public class Bean {
         System.out.println(studentDetail);
         for(Iterator iterate  = studentDetail.iterator(); iterate.hasNext();){
             student  = (Studentdetail)iterate.next();
-          if (student.getUserid().toString().equals(uName) && student.getPassword().toString().equals(pass)){
+          if (student.getUserId().toString().equals(uName) && student.getPassword().toString().equals(pass)){
               
               validate = true;
-              fName.append(student.getFirstname());
-              lName.append(student.getLastname() );
+              fName.append(student.getFirstName());
+              lName.append(student.getLastName() );
               gen.append(student.getGender() );
               dOB.append(student.getDob());
               homeAddress.append(student.getAddress() );

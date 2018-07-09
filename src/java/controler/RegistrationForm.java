@@ -5,10 +5,12 @@ package controler;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.io.Serializable;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
@@ -22,36 +24,38 @@ import service.RegistrationDBOperation;
  * @author LEOGOLD
  */
 @ManagedBean
-@Named(value = "registrationForm")
-@RequestScoped
-public class RegistrationForm {
+@Named(value = "registration")
+@SessionScoped
+public class RegistrationForm implements Serializable{
+
+    private static final long serialVersionUID = 1L;
     
+    private String userId;
     private String firstName;
     private String lastName;
     private String gender;
+    private Date dob;
     private String address;
-    private String contactNumber;
-    private String emailID;
-    private String userID;
+    private String phone;
+    private String email;
     private String password;
     private String confirmPassword;
-    private String DOB;
     private String finalPassword;
     private String userIDError;
     
     public RegistrationForm() {
     }
     
-    public RegistrationForm(String firstName, String lastName, String gender, String address, String contactNumber, String emailID, String userID, String fPassword, String dob) {
+    public RegistrationForm(String firstName, String lastName, String gender, String address, String contactNumber, String emailID, String userID, String fPassword, Date dob) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.address = address;
-        this.contactNumber = contactNumber;
-        this.emailID = emailID;
-        this.userID = userID;        
+        this.phone = contactNumber;
+        this.email = emailID;
+        this.userId = userID;        
         this.finalPassword = fPassword;
-        this.DOB = dob;
+        this.dob = dob;
     }
     
     public String getFirstName() {
@@ -86,28 +90,28 @@ public class RegistrationForm {
         this.address = address;
     }
     
-    public String getContactNumber() {
-        return contactNumber;
+    public String getPhone() {
+        return phone;
     }
     
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
     
-    public String getEmailID() {
-        return emailID;
+    public String getEmail() {
+        return email;
     }
     
-    public void setEmailID(String emailID) {
-        this.emailID = emailID;
+    public void setEmail(String email) {
+        this.email = email;
     }
     
-    public String getUserID() {
-        return userID;
+    public String getUserId() {
+        return userId;
     }
     
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
     
     public String getPassword() {
@@ -126,12 +130,12 @@ public class RegistrationForm {
         this.confirmPassword = confirmPassword;
     }
     
-    public String getDOB() {
-        return DOB;
+    public Date getDob() {
+        return dob;
     }
     
-    public void setDOB(String d) {
-        this.DOB = d;
+    public void setDob(Date d) {
+        this.dob = d;
     }
     
     public String getFinalPassword() {
@@ -187,13 +191,13 @@ public class RegistrationForm {
     }
     
     //This method is being called on the registration form page when a user submits form
-    public String submitAction() {
+    public String save() {
         
         RegistrationDBOperation regOperation = new RegistrationDBOperation();
         
         //Calling the Studentdetail Entity class mapped to DB and passing the values from the registrationForm bean
         //through its constructor
-        Studentdetail student = new Studentdetail(userID, firstName, lastName, gender, DOB, address, DOB, emailID, password);
+        Studentdetail student = new Studentdetail(userId, firstName, lastName, gender, dob, address, phone, email, password);
         
 //        student.setFirstname(getFirstName());
 //        student.setLastname(getLastName());
@@ -212,7 +216,7 @@ public class RegistrationForm {
         //This uses the retured value of save method notifies the user of the existence of the chosing detail
         if(message.equals("error")){
             setUserIDError("User Already exist. Please select another user");
-            setUserID("");
+            setUserId("");
             return "registration";
         }
         else {

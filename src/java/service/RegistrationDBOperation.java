@@ -23,14 +23,14 @@ public class RegistrationDBOperation {
      //This method firstly check if the user with such username exist before committing new user
     public String save(Studentdetail student){
         Transaction transaction = session.beginTransaction();
-        String userId = student.getUserid();
-        System.out.println(userId);
-        Query query = session.createQuery("FROM Studentdetail");
+        String userId = student.getUserId();
+        //System.out.println(userId);
+        Query query = session.createQuery("FROM model.Studentdetail");
         List <Studentdetail> studentList = query.list();
         
         for(Iterator iterate = studentList.iterator(); iterate.hasNext();){
-            Studentdetail regForm = (Studentdetail)iterate.next();
-            if(regForm.getUserid().equals(userId)){
+            Studentdetail newStudent = (Studentdetail)iterate.next();
+            if(newStudent.getUserId().equals(userId)){
                 validate = false;
             }
         }
@@ -38,7 +38,7 @@ public class RegistrationDBOperation {
             return "error";
         }
         else{
-            session.save(studentList);
+            session.save(student);
             transaction.commit();
             return "true";
         }
