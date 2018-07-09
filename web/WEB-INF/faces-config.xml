@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <navigation-rule>
+        <!--configuration for all the pages on the web application -->
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-action>#{bean.action}</from-action>
+            <from-outcome>student</from-outcome>
+            <to-view-id>/StudentProfile.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+          <navigation-case>
+            <from-action>#{bean.action}</from-action>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/LoginError.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+<!--        configuration for About Us page 
+        
+    <navigation-rule>
+        <from-view-id>AboutUs.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{bean.action}</from-action>
+            <from-outcome>student</from-outcome>
+            <to-view-id>/StudentProfile.xhtml</to-view-id>
+        </navigation-case>
+          <navigation-case>
+            <from-action>#{bean.action}</from-action>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/LoginError.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+      configuration for Admissions page 
+        
+    <navigation-rule>
+        <from-view-id>/Admissions.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{bean.action}</from-action>
+            <from-outcome>student</from-outcome>
+            <to-view-id>/StudentProfile.xhtml</to-view-id>
+        </navigation-case>
+          <navigation-case>
+            <from-action>#{bean.action}</from-action>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/LoginError.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+      configuration for Contact Us page 
+        
+    <navigation-rule>
+        <from-view-id>/Contacts.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{bean.action}</from-action>
+            <from-outcome>student</from-outcome>
+            <to-view-id>/StudentProfile.xhtml</to-view-id>
+        </navigation-case>
+          <navigation-case>
+            <from-action>#{bean.action}</from-action>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/LoginError.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+      configuration for Registraion page 
+        
+    <navigation-rule>
+        <from-view-id>/Registration.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{bean.action}</from-action>
+            <from-outcome>student</from-outcome>
+            <to-view-id>/StudentProfile.xhtml</to-view-id>
+        </navigation-case>
+          <navigation-case>
+            <from-action>#{bean.action}</from-action>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/LoginError.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+      configuration for LoginError page 
+        
+    <navigation-rule>
+        <from-view-id>/LoginError.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{bean.action}</from-action>
+            <from-outcome>student</from-outcome>
+            <to-view-id>/StudentProfile.xhtml</to-view-id>
+        </navigation-case>
+          <navigation-case>
+            <from-action>#{bean.action}</from-action>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/LoginError.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>-->
+</faces-config>

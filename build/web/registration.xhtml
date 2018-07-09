@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+         <link href="./resources/BaseTmCSS.css" rel="stylesheet" type="text/css"/>
+        <style>
+            table,tr{
+                border: 1px solid white;
+            }
+        </style>
+        <title>Leo University</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="BaseTemplate.xhtml">
+              <ui:define name="body">
+                  
+                    <p style="color: darkblue; font-size: 20pt" align="center">
+                        <b>Registration Form</b>
+                    </p> 
+                    <table bgcolor="black" cellpadding="12px" border="1" width="60%" align="center" style="height: 120px">
+                        <tr>
+                            <td bgcolor="white">
+                            <table border="0" width="100%" bgcolor="white" align="center" style="height: 100px">
+                                <h:form>
+                                    <tr>
+                                        <td>First Name</td>
+                                        <f:ajax event="change" render="fNameError">
+                                            <td><h:inputText value="#{registrationForm.firstName}" id="fName" required="true" requiredMessage="You Must enter first name" validator="#{registrationForm.validateInput}"/>
+                                            <h:message for="fName" id="fNameError" style="color: red"/> 
+                                        </td>
+                                        </f:ajax>
+                                    </tr>
+                                    <tr>
+                                        <td>Last Name</td>
+                                        <f:ajax event="change" render="lNameError">
+                                        <td>
+                                            <h:inputText value="#{registrationForm.lastName}" id="lName" required="true" requiredMessage="You Must enter last name" validator="#{registrationForm.validateInput}"/>
+                                            <h:message for="lName" id="lNameError" style="color: red"/> 
+                                        </td>
+                                        </f:ajax>
+                                    </tr>
+                                    <tr>
+                                        <td>Select Gender</td>
+                                        <td>
+                                            <h:selectOneRadio value="#{registrationForm.gender}" id="gender" required="true" requiredMessage="You Must select the gender">
+                                                <f:selectItem itemValue="M" itemLabel="Male"/>
+                                                <f:selectItem itemValue="F" itemLabel="Female"/>
+                                                <h:message for="gneder" style="color: red"/>
+                                            </h:selectOneRadio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date of Birth</td>
+                                        <td>
+                                            <h:inputText id="dob" value="#{registrationForm.DOB}" converterMessage="Enter DOB in MM/DD/YY format" required="true" requiredMessage="You must your date of birth">
+                                                <f:convertDateTime pattern="MM/dd/yy" type="date"/>
+                                            </h:inputText>
+                                                <h:message for="dob" style="color: red"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address </td>
+                                        <td>
+                                            <h:inputTextarea rows="3" value="#{registrationForm.address}" id="address" required="true" requiredMessage="You Must enter Your address"/>
+                                                <h:message for="address" style="color: red"/> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone Number</td>
+                                        <td>
+                                            <h:inputText value="#{registrationForm.contactNumber}" id="phone" required="true" requiredMessage="Phone number is required">
+                                                <f:validateRegex pattern="[0-9]{3}-+[0-9]{8}"/>
+                                            </h:inputText>
+                                                <h:message for="phone" style="color: red"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>E-mail</td>
+                                        <f:ajax render="emailError" event="change"> 
+                                        <td>
+                                            <h:inputText value="#{registrationForm.emailID}" id="email" required="true" requiredMessage="Email Address is required" validator="#{registrationForm.validateEmail}" validatorMessage="Invalid Email">
+                                                
+                                            </h:inputText>
+                                            <h:message for="email" id="emailError" style="color: red"/> 
+                                        </td>
+                                        </f:ajax>
+                                    </tr>
+                                    <tr>
+                                        <td>User Id</td>
+                                        <td>
+                                            <h:inputText value="#{registrationForm.userID}" id="userID" required="true" requiredMessage="Chose a userId" validatorMessage="User must not be less than 6 characters">
+                                                <f:validateLength maximum="100" minimum="6"/>
+                                                
+                                            </h:inputText>
+                                                <h:message for="userID" style="color: red"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Password</td>
+                                        <!--<f:ajax event="change" render="passError">-->
+                                        <td>
+                                            <h:inputSecret size="12" value="#{registrationForm.password}" id="pass" required="true" requiredMessage="Chose a unique password" validator="#{registrationForm.validateFinalPassword}" validatorMessage="password must be minimun of 6 characters long">
+                                                <f:validateLength maximum="100" minimum="6"/>
+                                            </h:inputSecret>
+                                            <h:message for="pass" id="passError" style="color: red"/> 
+                                        </td>
+                                        <!--</f:ajax>-->
+                                    </tr>
+                                    <tr>
+                                        <td>Confirm Password</td>
+<!--                                        <f:ajax event="change" render="cPassError">-->
+                                            <td>
+                                                <h:inputSecret value="#{registrationForm.confirmPassword}" id="cPass" required="true" requiredMessage="Confirm your password" validator="#{registrationForm.validateCPassword}">
+                                                </h:inputSecret> 
+                                                <h:message for="cPass" id="cPassError" style="color: red"/>
+                                            </td>
+<!--                                        </f:ajax>-->
+                                    </tr>
+                                    <tr>
+                                        <td align ="right">
+                                            <h:commandButton value="Submit" action="#{registrationForm.submitAction()}"/>
+                                        </td>
+                                        <td align="left">
+                                            <h:commandButton value="Reset" type="reset" immediate="true" action="Registration"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <p>
+                                            <h:outputText style ="color: red" value="#{registrationForm.userIDError}"/>
+                                        </p>
+                                    </tr>
+                                </h:form>
+                            </table>
+                            </td>
+                        </tr>
+                    </table>
+              </ui:define>
+          </ui:composition>
+    </h:body>
+</html>
+
